@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Secured("ROLE_USER")
 class AccountController {
 
-    private AccountRepository accountRepository;
+    private AccountDAO accountRepository;
 
     @Autowired
-    public AccountController(AccountRepository accountRepository) {
+    public AccountController(AccountDAO accountRepository) {
         this.accountRepository = accountRepository;
     }
 

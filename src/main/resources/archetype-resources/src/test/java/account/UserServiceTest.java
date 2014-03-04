@@ -17,6 +17,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import ${package}.account.Account;
+
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
@@ -24,7 +26,7 @@ public class UserServiceTest {
 	private UserService userService = new UserService();
 
 	@Mock
-	private AccountRepository accountRepositoryMock;
+	private AccountDAO accountRepositoryMock;
 
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
@@ -51,7 +53,7 @@ public class UserServiceTest {
 	@Test
 	public void shouldReturnUserDetails() {
 		// arrange
-		Account demoUser = new Account("user@example.com", "demo", "ROLE_USER");
+		Account demoUser = new Account("user@example.com", "user", "demo", "ROLE_USER");
 		when(accountRepositoryMock.findByEmail("user@example.com")).thenReturn(demoUser);
 
 		// act

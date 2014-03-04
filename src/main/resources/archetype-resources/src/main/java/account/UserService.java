@@ -14,12 +14,12 @@ import org.springframework.security.core.userdetails.*;
 public class UserService implements UserDetailsService {
 	
 	@Autowired
-	private AccountRepository accountRepository;
+	private AccountDAO accountRepository;
 	
 	@PostConstruct	
 	protected void initialize() {
-		accountRepository.save(new Account("user", "demo", "ROLE_USER"));
-		accountRepository.save(new Account("admin", "admin", "ROLE_ADMIN"));
+		accountRepository.save(new Account("user", "demo", "user", "ROLE_USER"));
+		accountRepository.save(new Account("admin", "admin", "admin", "ROLE_ADMIN"));
 	}
 	
 	@Override
@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
 		return createUser(account);
 	}
 	
-	public void signin(Account account) {
+	public void login(Account account) {
 		SecurityContextHolder.getContext().setAuthentication(authenticate(account));
 	}
 	
